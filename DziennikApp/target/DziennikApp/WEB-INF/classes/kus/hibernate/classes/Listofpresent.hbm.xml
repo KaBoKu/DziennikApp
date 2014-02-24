@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-11-16 20:27:54 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="kus.hibernate.classes.Listofpresent" table="listofpresent" catalog="appdziennik">
+        <id name="idListOfPresent" type="java.lang.Integer">
+            <column name="idListOfPresent" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="teachers" class="kus.hibernate.classes.Teachers" fetch="select">
+            <column name="idteacher" />
+        </many-to-one>
+        <many-to-one name="students" class="kus.hibernate.classes.Students" fetch="select">
+            <column name="idStudent" not-null="true" />
+        </many-to-one>
+        <property name="startLesson" type="timestamp">
+            <column name="StartLesson" length="19" />
+        </property>
+        <property name="endLesson" type="timestamp">
+            <column name="EndLesson" length="19" />
+        </property>
+        <property name="present" type="boolean">
+            <column name="Present" not-null="true" />
+        </property>
+        <property name="idCourse" type="java.lang.Integer">
+            <column name="idCourse" />
+        </property>
+        <property name="checkTime" type="timestamp">
+            <column name="checkTime" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

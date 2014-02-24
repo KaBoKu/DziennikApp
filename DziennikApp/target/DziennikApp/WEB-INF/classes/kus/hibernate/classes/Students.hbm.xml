@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-11-16 20:27:54 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="kus.hibernate.classes.Students" table="students" catalog="appdziennik">
+        <id name="idStudent" type="java.lang.Integer">
+            <column name="idStudent" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="users" class="kus.hibernate.classes.Users" fetch="select">
+            <column name="Users_userId" not-null="true" unique="true" />
+        </many-to-one>
+        <many-to-one name="classes" class="kus.hibernate.classes.Classes" fetch="select">
+            <column name="ClassId" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="Name" length="45" not-null="true" />
+        </property>
+        <property name="surname" type="string">
+            <column name="Surname" length="45" not-null="true" />
+        </property>
+        <property name="phone" type="string">
+            <column name="Phone" length="45" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" length="45" />
+        </property>
+        <property name="adress" type="string">
+            <column name="Adress" length="45" not-null="true" />
+        </property>
+        <property name="dateOfCome" type="timestamp">
+            <column name="DateOfCome" length="19" not-null="true" />
+        </property>
+        <set name="listofpresents" table="listofpresent" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idStudent" not-null="true" />
+            </key>
+            <one-to-many class="kus.hibernate.classes.Listofpresent" />
+        </set>
+        <set name="parentsHasStudentses" table="parents_has_students" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Students_idStudent" not-null="true" />
+            </key>
+            <one-to-many class="kus.hibernate.classes.ParentsHasStudents" />
+        </set>
+        <set name="markses" table="marks" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idStudent" not-null="true" />
+            </key>
+            <one-to-many class="kus.hibernate.classes.Marks" />
+        </set>
+    </class>
+</hibernate-mapping>

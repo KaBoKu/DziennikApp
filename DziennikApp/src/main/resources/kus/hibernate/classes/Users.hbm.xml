@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-11-16 20:27:54 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="kus.hibernate.classes.Users" table="users" catalog="appdziennik">
+        <id name="userId" type="java.lang.Integer">
+            <column name="userId" />
+            <generator class="identity" />
+        </id>
+        <property name="login" type="string">
+            <column name="login" length="45" not-null="true" unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="45" not-null="true" />
+        </property>
+        <property name="enabled" type="byte">
+            <column name="Enabled" not-null="true" />
+        </property>
+        <set name="studentses" table="students" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Users_userId" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="kus.hibernate.classes.Students" />
+        </set>
+        <set name="userroleses" table="userroles" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserId" not-null="true" />
+            </key>
+            <one-to-many class="kus.hibernate.classes.Userroles" />
+        </set>
+        <set name="parentses" table="parents" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Users_userId" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="kus.hibernate.classes.Parents" />
+        </set>
+        <set name="teacherses" table="teachers" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Users_userId" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="kus.hibernate.classes.Teachers" />
+        </set>
+    </class>
+</hibernate-mapping>

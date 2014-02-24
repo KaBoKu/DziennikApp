@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-11-16 20:27:54 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="kus.hibernate.classes.ParentsHasStudents" table="parents_has_students" catalog="appdziennik">
+        <id name="parentsHasStudentsId" type="java.lang.Integer">
+            <column name="Parents_has_StudentsId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="students" class="kus.hibernate.classes.Students" fetch="select">
+            <column name="Students_idStudent" not-null="true" />
+        </many-to-one>
+        <many-to-one name="parents" class="kus.hibernate.classes.Parents" fetch="select">
+            <column name="Parents_idParent" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

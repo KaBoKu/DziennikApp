@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-11-16 20:27:54 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="kus.hibernate.classes.Schedule" table="schedule" catalog="appdziennik">
+        <id name="idSchedule" type="java.lang.Integer">
+            <column name="idSchedule" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="courses" class="kus.hibernate.classes.Courses" fetch="select">
+            <column name="courseId" not-null="true" />
+        </many-to-one>
+        <many-to-one name="classes" class="kus.hibernate.classes.Classes" fetch="select">
+            <column name="classId" not-null="true" />
+        </many-to-one>
+        <many-to-one name="teachers" class="kus.hibernate.classes.Teachers" fetch="select">
+            <column name="teacherId" not-null="true" />
+        </many-to-one>
+        <property name="timeStart" type="time">
+            <column name="timeStart" length="8" not-null="true" />
+        </property>
+        <property name="timeEnd" type="time">
+            <column name="timeEnd" length="8" not-null="true" />
+        </property>
+        <property name="day" type="string">
+            <column name="day" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

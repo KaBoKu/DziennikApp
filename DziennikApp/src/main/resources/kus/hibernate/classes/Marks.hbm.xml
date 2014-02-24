@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-11-16 20:27:54 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="kus.hibernate.classes.Marks" table="marks" catalog="appdziennik">
+        <id name="idMark" type="java.lang.Integer">
+            <column name="idMark" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="teachers" class="kus.hibernate.classes.Teachers" fetch="select">
+            <column name="idTeacher" not-null="true" />
+        </many-to-one>
+        <many-to-one name="students" class="kus.hibernate.classes.Students" fetch="select">
+            <column name="idStudent" not-null="true" />
+        </many-to-one>
+        <many-to-one name="courses" class="kus.hibernate.classes.Courses" fetch="select">
+            <column name="idCourse" not-null="true" />
+        </many-to-one>
+        <property name="mark" type="string">
+            <column name="mark" length="10" not-null="true" />
+        </property>
+        <property name="about" type="string">
+            <column name="about" length="200" />
+        </property>
+        <property name="date" type="timestamp">
+            <column name="Date" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

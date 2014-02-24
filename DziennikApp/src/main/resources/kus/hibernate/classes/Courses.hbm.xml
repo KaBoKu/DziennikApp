@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-11-16 20:27:54 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="kus.hibernate.classes.Courses" table="courses" catalog="appdziennik">
+        <id name="idCourse" type="java.lang.Integer">
+            <column name="idCourse" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="Name" not-null="true" />
+        </property>
+        <property name="about" type="string">
+            <column name="About" />
+        </property>
+        <property name="start" type="timestamp">
+            <column name="Start" length="19" not-null="true" />
+        </property>
+        <property name="end" type="timestamp">
+            <column name="End" length="19" not-null="true" />
+        </property>
+        <property name="ongoing" type="boolean">
+            <column name="Ongoing" not-null="true" />
+        </property>
+        <set name="coursesHasTeacherses" table="courses_has_teachers" inverse="true" cascade="save-update" lazy="true" fetch="select">
+            <key>
+                <column name="Courses_idCourse" not-null="true" />
+            </key>
+            <one-to-many class="kus.hibernate.classes.CoursesHasTeachers" />
+        </set>
+        <set name="schedules" table="schedule" inverse="true" cascade="save-update" lazy="true" fetch="select">
+            <key>
+                <column name="courseId" not-null="true" />
+            </key>
+            <one-to-many class="kus.hibernate.classes.Schedule" />
+        </set>
+        <set name="markses" table="marks" inverse="true" cascade="save-update" lazy="true" fetch="select">
+            <key>
+                <column name="idCourse" not-null="true" />
+            </key>
+            <one-to-many class="kus.hibernate.classes.Marks" />
+        </set>
+    </class>
+</hibernate-mapping>

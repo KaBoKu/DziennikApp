@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-11-16 20:27:54 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="kus.hibernate.classes.Teachers" table="teachers" catalog="appdziennik">
+        <id name="idTeacher" type="java.lang.Integer">
+            <column name="idTeacher" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="users" class="kus.hibernate.classes.Users" fetch="select">
+            <column name="Users_userId" not-null="true" unique="true" />
+        </many-to-one>
+        <many-to-one name="classes" class="kus.hibernate.classes.Classes" fetch="select">
+            <column name="Classes_idClass" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="Name" length="45" not-null="true" />
+        </property>
+        <property name="surname" type="string">
+            <column name="Surname" length="45" not-null="true" />
+        </property>
+        <property name="phone" type="string">
+            <column name="Phone" length="45" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" length="45" />
+        </property>
+        <property name="adress" type="string">
+            <column name="Adress" length="45" not-null="true" />
+        </property>
+        <property name="dateOfCome" type="timestamp">
+            <column name="DateOfCome" length="19" not-null="true" />
+        </property>
+        <set name="classeses" table="classes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Teachers_idTeachers" not-null="true" />
+            </key>
+            <one-to-many class="kus.hibernate.classes.Classes" />
+        </set>
+        <set name="coursesHasTeacherses" table="courses_has_teachers" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Teachers_idTeachers" not-null="true" />
+            </key>
+            <one-to-many class="kus.hibernate.classes.CoursesHasTeachers" />
+        </set>
+        <set name="listofpresents" table="listofpresent" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idteacher" />
+            </key>
+            <one-to-many class="kus.hibernate.classes.Listofpresent" />
+        </set>
+        <set name="schedules" table="schedule" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="teacherId" not-null="true" />
+            </key>
+            <one-to-many class="kus.hibernate.classes.Schedule" />
+        </set>
+        <set name="markses" table="marks" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idTeacher" not-null="true" />
+            </key>
+            <one-to-many class="kus.hibernate.classes.Marks" />
+        </set>
+    </class>
+</hibernate-mapping>

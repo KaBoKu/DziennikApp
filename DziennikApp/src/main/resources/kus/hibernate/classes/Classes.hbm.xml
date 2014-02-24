@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-11-16 20:27:54 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="kus.hibernate.classes.Classes" table="classes" catalog="appdziennik">
+        <id name="idClass" type="java.lang.Integer">
+            <column name="idClass" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="teachers" class="kus.hibernate.classes.Teachers" fetch="select">
+            <column name="Teachers_idTeachers" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="Name" length="45" not-null="true" />
+        </property>
+        <property name="startYear" type="timestamp">
+            <column name="StartYear" length="19" not-null="true" />
+        </property>
+        <property name="endYear" type="timestamp">
+            <column name="EndYear" length="19" not-null="true" />
+        </property>
+        <property name="about" type="string">
+            <column name="About" />
+        </property>
+        <set name="studentses" table="students" inverse="true" cascade="save-update" lazy="true" fetch="select">
+            <key>
+                <column name="ClassId" />
+            </key>
+            <one-to-many class="kus.hibernate.classes.Students" />
+        </set>
+        <set name="schedules" table="schedule" inverse="true" cascade="save-update" lazy="true" fetch="select">
+            <key>
+                <column name="classId" not-null="true" />
+            </key>
+            <one-to-many class="kus.hibernate.classes.Schedule" />
+        </set>
+        <set name="teacherses" table="teachers" inverse="true" cascade="save-update" lazy="true" fetch="select">
+            <key>
+                <column name="Classes_idClass" />
+            </key>
+            <one-to-many class="kus.hibernate.classes.Teachers" />
+        </set>
+    </class>
+</hibernate-mapping>
