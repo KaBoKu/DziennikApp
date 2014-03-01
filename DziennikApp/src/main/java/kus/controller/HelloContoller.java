@@ -1,5 +1,7 @@
 package kus.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +18,13 @@ public class HelloContoller {
 	
 	@RequestMapping(value="/index",method = RequestMethod.GET)
 	public String Hello2(){
+		
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	    String name = user.getUsername(); //get logged in username
+	    System.out.println(user.getPassword());
+	    System.out.println(user.getAuthorities());
+	    System.out.println("User name: "+name);
+		
 		return "index";
 	}
 	

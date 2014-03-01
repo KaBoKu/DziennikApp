@@ -23,7 +23,7 @@ public class Users implements java.io.Serializable {
 	@NotNull
 	private String login;
 	@NotNull
-	@Size(min=6,max=15)
+	@Size(min=6,max=45)
 	private String password;
 	private byte enabled;
 	private Set<Students> studentses = new HashSet<Students>(0);
