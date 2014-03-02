@@ -33,6 +33,7 @@ public class RegisterUserDAOImpl implements RegisterUserDAO{
 		session.save(u);
 		uroles.setUsers(u);
 		s.setUsers(u);
+		session.save(s);
 		Set<ParentsHasStudents> pHSset = new HashSet<>();
 		
 		for(Parents pa: p){
@@ -41,7 +42,9 @@ public class RegisterUserDAOImpl implements RegisterUserDAO{
 			pHSset.add(pHS);
 		}
 		s.setParentsHasStudentses(pHSset);
-		session.save(p);
+		
+		tr.commit();
+		session.close();
 	}
 
 	@Override
