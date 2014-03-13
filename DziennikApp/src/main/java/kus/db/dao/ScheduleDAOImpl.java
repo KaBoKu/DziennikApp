@@ -3,11 +3,13 @@ package kus.db.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import kus.hibernate.classes.Schedule;
 import kus.hibernate.util.HibernateUtil;
-
+@Repository
 public class ScheduleDAOImpl implements ScheduleDAO{
+	
 	
 	SessionFactory sF = null;
 	Session session = null;

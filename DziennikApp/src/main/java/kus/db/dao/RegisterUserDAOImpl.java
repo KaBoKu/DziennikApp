@@ -16,7 +16,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.security.core.userdetails.User;
-
+import org.springframework.stereotype.Repository;
+@Repository
 public class RegisterUserDAOImpl implements RegisterUserDAO{
 	
 	SessionFactory sF = null;

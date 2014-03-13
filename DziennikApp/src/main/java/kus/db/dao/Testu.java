@@ -1,6 +1,7 @@
 package kus.db.dao;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -10,10 +11,13 @@ import java.util.Set;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import kus.hash.SHAHashing;
+import kus.hibernate.classes.Courses;
 import kus.hibernate.classes.Parents;
 import kus.hibernate.classes.Students;
 import kus.hibernate.classes.Teachers;
@@ -99,10 +103,28 @@ public class Testu {
 		parentSet.add(t2);
 		rDAO.addUser(users3, uroles3, st, parentSet);
 	*/
+	//	ApplicationContext appContext = 
+	//	    	  new ClassPathXmlApplicationContext("WEB-INF/app-dziennik-servlet.xml");
+		
 		SessionFactory sF = HibernateUtil.getSessionFactory();
 		Session s = sF.openSession();
 		Transaction tr = s.beginTransaction();
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+		String dateInString = "01-08-2014";
+		String dateEndString = "29-06-2015";
+		
+		Courses c = new Courses("Historia1", new GregorianCalendar(2014,8,1).getTime(), new GregorianCalendar(2015,6,29).getTime(), true);
+		CoursesDAO cDAO = new CoursesDAOImpl();
+		//cDAO.createCourses(c);
+		
+		UserDAO uDAO = new UserDAOImpl();
+		Users users = new Users();
+		
+		users.setEnabled((byte)1);
+		users.setLogin("Rara");
+		users.setPassword(SHAHashing.hashing("olo"));
+		uDAO.addUser(users);
 	}
 
 }

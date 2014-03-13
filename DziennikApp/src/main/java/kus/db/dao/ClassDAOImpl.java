@@ -6,11 +6,13 @@ import java.util.Set;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import kus.hibernate.classes.Classes;
 import kus.hibernate.classes.Teachers;
 import kus.hibernate.util.HibernateUtil;
 
+@Repository
 public class ClassDAOImpl implements ClassDAO{
 	SessionFactory sF = null;
 	Session session = null;

@@ -1,9 +1,12 @@
 package kus.db.dao;
 
+import org.springframework.stereotype.Repository;
+
 import kus.hibernate.classes.Parents;
 import kus.hibernate.classes.Students;
 import kus.hibernate.classes.Teachers;
 
+@Repository
 public class DeleteUserDAOImpl implements DeleteUserDAO{
 
 	@Override

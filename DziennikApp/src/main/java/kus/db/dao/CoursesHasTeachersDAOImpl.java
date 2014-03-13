@@ -3,6 +3,7 @@ package kus.db.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import kus.hibernate.classes.Courses;
 import kus.hibernate.classes.CoursesHasTeachers;
@@ -12,6 +13,7 @@ import kus.hibernate.classes.Students;
 import kus.hibernate.classes.Teachers;
 import kus.hibernate.util.HibernateUtil;
 
+@Repository
 public class CoursesHasTeachersDAOImpl implements CoursesHasTeachersDAO{
 	
 
